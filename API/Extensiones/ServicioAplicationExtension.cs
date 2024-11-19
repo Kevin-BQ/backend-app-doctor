@@ -5,6 +5,8 @@ using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using API.Errores;
+using Data.Interfaces.IRepositorio;
+using Data.Repositorio;
 
 namespace API.Extensiones
 {
@@ -63,6 +65,8 @@ namespace API.Extensiones
                     return new BadRequestObjectResult(errorResponse);
                 };
             });
+
+            services.AddScoped<IUnidadTrabajo, UnidadTrabajo>();
 
             return services;
         }

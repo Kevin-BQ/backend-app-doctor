@@ -15,7 +15,7 @@ namespace Data.Interfaces.IRepositorio
             string incluirPropiedades = null // Include
             );
 
-        Task<T> ObtnerPrimero(
+        Task<T> ObtenerPrimero(
             Expression<Func<T, bool>> filtro = null,
             string incluirPropiedades = null // Include
             );
