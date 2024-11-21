@@ -5,25 +5,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Models.Entidades
+namespace Models.DTOs
 {
-    public class Especialidad
+    public class EspecialidaDto
     {
-        [Key]
         public int Id { get; set; }
 
-        [Required]
-        [StringLength(60, MinimumLength =1, ErrorMessage = "Debe contener Minimo 1 Maximo 60 caracteres")]
+        [Required(ErrorMessage = "El nombre es Requerido")]
+        [StringLength(60, MinimumLength = 1, ErrorMessage = "Debe contener Minimo 1 Maximo 60 caracteres")]
         public string NombreEspecialidad { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "La descripcion es Requerida")]
         [StringLength(100, MinimumLength = 1, ErrorMessage = "Debe contener Minimo 1 Maximo 100 caracteres")]
         public string Descripcion { get; set; }
 
-        public bool Estado { get; set; }
-
-        public DateTime FechaCreacion { get; set; }
-        public DateTime FechaActualizacion { get; set; }
-
+        [Required(ErrorMessage = "El estado es Requerido")]
+        public int Estado { get; set; } // 1 - 0
     }
 }

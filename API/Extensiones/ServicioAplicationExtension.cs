@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using API.Errores;
 using Data.Interfaces.IRepositorio;
 using Data.Repositorio;
+using Utilidades;
+using BLL.Servicios.Interfaces;
+using BLL.Servicios;
 
 namespace API.Extensiones
 {
@@ -18,15 +21,15 @@ namespace API.Extensiones
 
             services.AddSwaggerGen(options =>
             {
-                 options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-                 {
-                     Description = "Ingresa Bearer [espacio] token \r\n\r\n " +
-                                   "Ejemplo: Bearer ejoy^88788999990000",
-                     Name = "Authorization",
-                     In = ParameterLocation.Header,
-                     Scheme = "Bearer"
-                 });
-                 options.AddSecurityRequirement(new OpenApiSecurityRequirement()
+                options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = "Ingresa Bearer [espacio] token \r\n\r\n " +
+                                  "Ejemplo: Bearer ejoy^88788999990000",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Scheme = "Bearer"
+                });
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement()
                  {
                     {
                         new OpenApiSecurityScheme
@@ -67,6 +70,9 @@ namespace API.Extensiones
             });
 
             services.AddScoped<IUnidadTrabajo, UnidadTrabajo>();
+            services.AddAutoMapper(typeof(MappingProfile));
+
+            services.AddScoped<IEspecialidadServicio, EspecialidadServicio>();
 
             return services;
         }
