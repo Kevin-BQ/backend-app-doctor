@@ -15,5 +15,17 @@ namespace Models.DTOs
         [Required(ErrorMessage = "Password Requerido")]
         [StringLength(10, MinimumLength = 3, ErrorMessage = "El password deber der Minimo 3 Maximo 10 caracteres")]
         public string Password{ get; set; }
+
+        [Required(ErrorMessage = "Apellidos Requeridos")]
+        public string Apellidos { get; set; }
+
+        [Required(ErrorMessage = "Nombres Requeridos")]
+        public string Nombres { get; set; }
+
+        [Required(ErrorMessage = "Email Requeridos")]
+        public string Email { get; set; }
+
+        [Required(ErrorMessage = "Rol Requeridos")]
+        public string Rol { get; set; }
     }
 }
