@@ -13,6 +13,7 @@ namespace BLL.Servicios.Interfaces
         Task<EspecialidaDto> Agregar(EspecialidaDto especialidaDto);
         Task Actualizar(EspecialidaDto especialidaDto);
         Task Remover(int id);
+        Task<IEnumerable<EspecialidaDto>> ObtenerActivos();
 
 
     }

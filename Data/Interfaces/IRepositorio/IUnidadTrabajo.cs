@@ -9,6 +9,7 @@ namespace Data.Interfaces.IRepositorio
     public interface IUnidadTrabajo: IDisposable
     {
         IEspecialidadRepositorio Especialidad {  get; }
+        IDoctorRespositorio Doctor {  get; }
 
         Task Guardar();
     }

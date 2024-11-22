@@ -5,14 +5,14 @@ using System.Net;
 
 namespace API.Controllers
 {
-    public class EspecialidadController: BaseApiController
+    public class DoctorController: BaseApiController
     {
-        private readonly IEspecialidadServicio _especialidadServicio;
+        private readonly IDoctorServicio _doctorServicio;
         private ApiResponse _response;
 
-        public EspecialidadController(IEspecialidadServicio especialidadServicio)
+        public DoctorController(IDoctorServicio doctorServicio)
         {
-            _especialidadServicio = especialidadServicio;
+            _doctorServicio = doctorServicio;
             _response = new();
         }
 
@@ -21,7 +21,7 @@ namespace API.Controllers
         {
             try
             {
-                _response.Resultado = await _especialidadServicio.ObtenerTodos();
+                _response.Resultado = await _doctorServicio.ObtenerTodos();
                 _response.IsExitoso = true;
                 _response.statusCode = HttpStatusCode.OK;
             }
@@ -36,11 +36,11 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Crear(EspecialidaDto especialidaDto)
+        public async Task<IActionResult> Crear(DoctorDto doctorDto)
         {
             try
             {
-                await _especialidadServicio.Agregar(especialidaDto);
+                await _doctorServicio.Agregar(doctorDto);
                 _response.IsExitoso = true;
                 _response.statusCode = HttpStatusCode.Created;
             }
@@ -55,11 +55,11 @@ namespace API.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Editar(EspecialidaDto especialidaDto)
+        public async Task<IActionResult> Editar(DoctorDto doctorDto)
         {
             try
             {
-                await _especialidadServicio.Actualizar(especialidaDto);
+                await _doctorServicio.Actualizar(doctorDto);
                 _response.IsExitoso = true;
                 _response.statusCode = HttpStatusCode.NoContent;
             }
@@ -72,34 +72,16 @@ namespace API.Controllers
             }
             return Ok(_response);
         }
+
 
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> Eliminar(int id)
         {
             try
             {
-                await _especialidadServicio.Remover(id);
+                await _doctorServicio.Remover(id);
                 _response.IsExitoso = true;
                 _response.statusCode = HttpStatusCode.NoContent;
-            }
-            catch (Exception ex)
-            {
-
-                _response.IsExitoso = false;
-                _response.Mensaje = ex.Message;
-                _response.statusCode = HttpStatusCode.BadRequest;
-            }
-            return Ok(_response);
-        }
-
-        [HttpGet("ListadoActivos")]
-        public async Task<IActionResult> GetActivos()
-        {
-            try
-            {
-                _response.Resultado = await _especialidadServicio.ObtenerActivos();
-                _response.IsExitoso = true;
-                _response.statusCode = HttpStatusCode.OK;
             }
             catch (Exception ex)
             {

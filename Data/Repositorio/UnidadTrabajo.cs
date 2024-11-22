@@ -11,10 +11,13 @@ namespace Data.Repositorio
     {
         private readonly ApplicationDbContext _context;
         public IEspecialidadRepositorio Especialidad { get; private set; }
+        public IDoctorRespositorio Doctor {  get; private set; }
+
         public UnidadTrabajo(ApplicationDbContext context)
         {
             _context = context;
             Especialidad = new EspecialidadRepositorio(context);
+            Doctor = new DoctorRepositorio(context);
         }
 
         public void Dispose()
